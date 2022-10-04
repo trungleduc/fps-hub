@@ -1,0 +1,37 @@
+[build-system]
+requires = [
+    "hatchling>=1.9.0",
+]
+build-backend = "hatchling.build"
+
+[project]
+name = "fps-hub"
+dynamic = [
+    "version",
+]
+description = "A JupyterHub plugin for FPS"
+readme = "README.md"
+license = ""
+requires-python = ">=3.7"
+dependencies = [
+    "fps",
+    "fps-uvicorn",
+]
+
+[project.scripts]
+fps_hub = "fps_hub.cli:hub_app"
+
+[project.entry-points.fps_config]
+fps_hub_config = "fps_hub.config"
+
+[project.entry-points.fps_router]
+fps_hub_router = "fps_hub.routes"
+
+
+[tool.hatch.version]
+path = "fps_hub/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/fps_hub",
+]
